@@ -68,16 +68,21 @@
     monsterList.append(content);
 
     let monsters = Cookies.get('monsters');
-    if(!Array.isArray(monsters)) {
+    if(typeof(monsters) == 'string') {
+      monsters = monsters.split(',');
+    } else {
       monsters = [];
     }
+    console.log(monsters);
 
     let monsterId = + getUrlVars()['monster'];
     console.log(monsterId);
     if (monsterId != NaN) {
       monsters.push(monsterId);
+      console.log('Setting monsters');
       Cookies.set('monsters', monsters);
-      console.log(monsters);
+      console.log(monsters) ;
+      console.log(Cookies.get());
     }
 
     monsters.forEach(function(monsterId) {
@@ -85,6 +90,9 @@
       console.log('monster-' + monsterId + '-lock');
       $('#monster-' + monsterId + '-lock').removeClass('locked');
     });
+
+    console.log('COOKIES');
+    console.log(Cookies.get());
 
   });
 
