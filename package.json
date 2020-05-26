@@ -1,0 +1,11 @@
+{
+  "name": "monster-hunt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jcleary/monster-hunt.git",
+  "author": "John Cleary <john@createk.io>",
+  "license": "MIT",
+  "dependencies": {
+    "qrcode": "^1.4.4"
+  }
+}
