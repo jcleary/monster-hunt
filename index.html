@@ -8,8 +8,8 @@
 <div class="container" style="">
   <div class="row">
     <div class="col-12">
-      <h1>Hesket Park Monster Hunt</h1>
-      <p>Welcome to the Hesket Park Monster Hunt. Walk around theCan you find all 10 monsters? </p>
+      <h1>Hesketh Park Monster Hunt</h1>
+      <p>Welcome to the Hesketh Park Monster Hunt.  </p>
     </div>
   </div>
   <div id="monster-list">
@@ -22,50 +22,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+<script src="javascript/application.js"></script>
 
 <script type="text/javascript">
   $(function () {
-
-    function getUrlVars()
-    {
-      var vars = [], hash;
-      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for(var i = 0; i < hashes.length; i++)
-      {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-      }
-      return vars;
-    };
-
-
-    var monsterList = $('#monster-list');
-
-    let i = 0;
-    let content = '';
-
-    for (i = 1; i <= 12; i++) {
-      if ((i % 2) == 1) {
-        content = content + '<div class="row">';
-      }
-
-      content = content + '\
-      <div class="col-6"> \
-        <div class="card" > \
-          <div id="monster-'+i+'-lock" class="locked"></div> \
-          <img src="images/mon-' + i + '.jpeg" class="card-img-top monster-img"> \
-          <div class="card-body"> \
-            <p class="card-text">Monster ' + i + '</p> \
-          </div> \
-        </div> \
-      </div> \
-      ';
-      if ((i % 2) == 0) {
-        content = content + '</div>';
-      }
-    }
-    monsterList.append(content);
+    showMonsters();
 
     let monsters = Cookies.get('monsters');
     if(typeof(monsters) == 'string') {
@@ -73,29 +34,18 @@
     } else {
       monsters = [];
     }
-    console.log(monsters);
 
     let monsterId = + getUrlVars()['monster'];
-    console.log(monsterId);
     if (monsterId != NaN) {
       monsters.push(monsterId);
-      console.log('Setting monsters');
       Cookies.set('monsters', monsters);
-      console.log(monsters) ;
-      console.log(Cookies.get());
     }
 
     monsters.forEach(function(monsterId) {
-      console.log(monsterId);
-      console.log('monster-' + monsterId + '-lock');
       $('#monster-' + monsterId + '-lock').removeClass('locked');
     });
-
-    console.log('COOKIES');
-    console.log(Cookies.get());
-
   });
-
 </script>
+
 </body>
 </html>
