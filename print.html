@@ -22,7 +22,7 @@
     showMonsters(3);
 
     let getUrl = window.location;
-    let baseUrl = getUrl .protocol + "//" + getUrl.host + "/" ;
+    let baseUrl = getUrl .protocol + "//" + getUrl.host + '/' + getUrl.pathname.split('/')[1] + "/index.html" ;
 
     for (let i = 1; i <= 12; i++) {
       $('#monster-' + i + '-lock').removeClass('locked');
@@ -34,8 +34,8 @@
       $('#monster-' + i + '-card-body').append(qrcode);
 
       var canvas = document.getElementById('qrcode-' + i)
-      console.log(baseUrl + 'monster=' + i);
-      QRCode.toCanvas(canvas, baseUrl + 'monster=' + i, function (error) {
+      console.log(baseUrl + '?monster=' + i);
+      QRCode.toCanvas(canvas, baseUrl + '?monster=' + i, function (error) {
         if (error) console.error(error)
         console.log('success!');
       })
